@@ -17,17 +17,28 @@ Character::Character(
 
 void Character::Attack(Character& enemy) const
 {
-	// TODO: Complete me!
+	if (Distance(enemy) == 1)
+	{
+		enemy.SetHealthPoints(enemy.GetHealthPoints() - GetAttack() + enemy.GetDefence());
+	}
 }
 
 bool Character::IsDead() const
 {
-	// TODO: Complete me!
+	if (GetHealthPoints() <= 0)
+	{
+		return true;
+	}
 	return false;
 }
 
 float Character::Distance(const Character& character) const
 {
-	// TODO: Complete me!
-	return 1.0f;
+	int x1 = GetPosition().first;
+	int x2 = character.GetPosition().first;
+	int y1 = GetPosition().second;
+	int y2 = character.GetPosition().second;
+
+	float d = std::sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+	return d;
 }
